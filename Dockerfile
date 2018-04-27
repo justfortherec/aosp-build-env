@@ -37,8 +37,8 @@ RUN apt-get update \
 RUN mkdir -p /usr/local/repo/bin \
  && curl --tlsv1 https://storage.googleapis.com/git-repo-downloads/repo > \
     /usr/local/repo/bin/repo \
- && chmod +x /usr/local/repo/bin/repo
-ENV PATH /usr/local/repo/bin:$PATH
+ && chmod +x /usr/local/repo/bin/repo \
+ && echo 'PATH="/usr/local/repo/bin:$PATH"' >> /etc/skel/.bashrc
 
 # Create working directory
 RUN mkdir -p /opt/aosp/
