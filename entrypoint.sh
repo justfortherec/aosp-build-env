@@ -57,13 +57,14 @@ chown \
 	"${SOURCE_DIR}" \
 	"${USER_HOME}"
 
+readonly ENVSETUP="${SOURCE_DIR}/build/envsetup.sh"
+if [ -e "${ENVSETUP}" ]; then
+    echo "source ${ENVSETUP}" >> "${USER_HOME}/.bashrc"
+fi
+
 ARGS="$@"
 if [ -z "${ARGS}" ]; then
 	ARGS="bash"
-	readonly ENVSETUP="${SOURCE_DIR}/build/envsetup.sh"
-	if [ -e "${ENVSETUP}" ]; then
-		ARGS="${ARGS} --init-file ${ENVSETUP}"
-	fi
 fi
 
 export HOME="${USER_HOME}"
